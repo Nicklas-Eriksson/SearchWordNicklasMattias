@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SearchWordNicklasMattias
 {
     //Alla meningar med hits
     public class Node
     {
-        public List<Node> nodeList = new List<Node>();
         public string Data;
 
         public Node Left;
@@ -32,20 +27,16 @@ namespace SearchWordNicklasMattias
 
         public void PrintNode()
         {
-            foreach (var node in nodeList)
-            {
-                Console.WriteLine(node.Data);
-            }
+            Console.WriteLine(Data);
         }
 
         public Node Root;
 
-        public void AddNode(string result)
+        public void AddNode(string result, Node fillNode)
         {
-            var fillNode = new Node();
             fillNode.Data = result;
 
-            Node currentNode = Root;
+            var currentNode = Root;
 
             if (currentNode == null)
             {
@@ -55,36 +46,28 @@ namespace SearchWordNicklasMattias
             {
                 Node parentNode;
 
-                while (true)
+                parentNode = currentNode;
+                if (currentNode.Left == null)
                 {
-                    parentNode = currentNode;
-                    if (currentNode.Left == null)
+                    currentNode.Left = fillNode;
+                }
+                else if (currentNode.Right == null)
+                {
+                    currentNode.Right = fillNode;
+                }
+                else
+                {
+                    currentNode = currentNode.Left;
+                    if (currentNode == null)
                     {
-                        currentNode.Left = fillNode;
-                        break;
-                    }
-                    else if (currentNode.Right == null)
-                    {
-                        currentNode.Right = fillNode;
-                        break;
+                        parentNode.Left = fillNode;
                     }
                     else
                     {
-                        currentNode = currentNode.Left;
-                        if (currentNode == null)
-                        {
-                            parentNode.Left = fillNode;
-                            break;
-                        }
-                        else
-                        {
-                            currentNode = currentNode.Right;
-                            parentNode.Right = fillNode;
-                            break;
-                        }
+                        currentNode = currentNode.Right;
+                        parentNode.Right = fillNode;
                     }
                 }
-                nodeList.Add(currentNode);
             }
         }
     }
