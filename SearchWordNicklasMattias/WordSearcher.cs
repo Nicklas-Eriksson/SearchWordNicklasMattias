@@ -41,12 +41,11 @@ namespace SearchWordNicklasMattias
             {
                 ExtractData();
                 var myNode = new Node();
-                myNode.AddNode("1");
-                myNode.AddNode("2");
-                myNode.AddNode("3");
-                myNode.AddNode("4");
-                myNode.AddNode("5");
-                
+                myNode.AddNode("1", myNode);
+                myNode.AddNode("2", myNode);
+                myNode.AddNode("3", myNode);
+                myNode.AddNode("4", myNode);
+                myNode.AddNode("5", myNode);
 
                 myNode.PrintNode();
 

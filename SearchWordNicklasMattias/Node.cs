@@ -2,7 +2,6 @@
 
 namespace SearchWordNicklasMattias
 {
-    //Alla meningar med hits
     public class Node
     {
         public string Data;
