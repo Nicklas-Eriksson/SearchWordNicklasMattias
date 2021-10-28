@@ -49,6 +49,7 @@
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tree.cs" />
     <Compile Include="Utility\Helper.cs" />
     <Compile Include="WordSearcher.cs" />
   </ItemGroup>
