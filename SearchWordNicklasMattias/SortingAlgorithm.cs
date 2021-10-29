@@ -2,7 +2,7 @@
 
 namespace SearchWordNicklasMattias
 {
-    public class SortingAlgorithm
+    public static class SortingAlgorithm
     {
         public static List<string> Quick(List<string> unsorted, int low, int high)
         {

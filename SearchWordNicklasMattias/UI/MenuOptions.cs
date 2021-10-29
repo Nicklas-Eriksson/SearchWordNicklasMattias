@@ -29,6 +29,8 @@ namespace SearchWordNicklasMattias.UI
         /// <param name="option"></param>
         public void OptionForMainMenu(int option)
         {
+            var pm = new PrintMenues();
+
             switch (option)
             {
                 case 1:
@@ -36,14 +38,20 @@ namespace SearchWordNicklasMattias.UI
                     Helper.PressAnyKeyToContinue();
                     break;
                 case 2:
-                    new PrintMenues().SelectAText();
+                    pm.SelectAText();
                     OptionForPrintFullTxtMenu();
                     break;
                 case 3:
-                    new PrintMenues().PrintPreviousResults();
+                    pm.PrintPreviousResults();
                     OptionForPrintPreviousResults();
                     break;
                 case 4:
+                    pm.PrintDocInOrder();
+                    var docInOrder = new WordSearcher().GetDocInOrder(Helper.GetUserInput(1, 3), pm.HowManyWords());
+                    pm.PrintList(docInOrder);
+                    Helper.PressAnyKeyToContinue();
+                    break;
+                case 5:
                     Helper.ExitProgram();
                     break;
             }
