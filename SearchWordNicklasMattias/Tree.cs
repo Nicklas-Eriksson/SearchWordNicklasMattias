@@ -11,6 +11,11 @@ namespace SearchWordNicklasMattias
         public Node Root;
         public void AddNode(Node Root, Node newNode)
         {
+            if (Root == null)
+            {
+                Root = newNode;
+
+            }
             Node temp;
             temp = Root;
             if (string.Compare(newNode.Data, temp.Data) < 0)

@@ -14,9 +14,10 @@ namespace SearchWordNicklasMattias
             var ws = new WordSearcher();
             ws.LoadFiles();
             Console.Write("Word: ");
-            ws.GetSearhWord(Console.ReadLine());
+            var tree = ws.GetSearhWord(Console.ReadLine());
+
+            tree.DisplayTree(tree.Root);
             Console.ReadLine();
-           // ws.PrintResult();
         }
     }
 }
