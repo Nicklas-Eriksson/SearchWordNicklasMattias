@@ -57,9 +57,22 @@ namespace SearchWordNicklasMattias
                 var rows = SearchDocForMatch(word, document.Item2);
                 var sentences = FindMatchInRows(rows);
                 var wordCount = FindMatchInSentence(sentences);
-
-                var result = $"Search word : {word}\n{docTitle} got {wordCount} hits.\n{word} was found in these sentences: _______.\n";
-
+                
+                var sentencesString = "";
+                for (int i = 0; i < sentences.Count; i++)
+                {
+                    if(sentences[i] != "")
+                        sentencesString += 
+                            $"|| Sentences {i +1}:\n" +
+                            $"|| \t{sentences[i].Trim()}\n";
+                }
+                var result = 
+                    $"______________________________\n" +
+                    $"|| Word: {word}\n" +
+                    $"|| Title:{docTitle}\n" +
+                    $"|| Words Found: {wordCount}\n" +
+                    $"{sentencesString}\n";
+                
                 btObj.AddNode(btObj.Root, btObj.AddNode(result));
             }
 
@@ -78,7 +91,6 @@ namespace SearchWordNicklasMattias
             }
             return rows;
         }
-
 
         private List<string> FindMatchInRows(List<string> rows)
         {
@@ -102,12 +114,12 @@ namespace SearchWordNicklasMattias
             return counter;
         }
 
-        internal void PrintResult()
-        {
-            throw new NotImplementedException();
-        }
-
         //Anropa en lista med tidigare sökta ord, om den finns med i listan return true, annars false
         public bool CheckForDuplicateWord() => new WordSearcher().SerchedWords.Contains(WordSearcher.Word);
+
+        public void GetPriorSearchesFromData()
+        {
+            //all info spard.
+        }
     }
 }
