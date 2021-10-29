@@ -71,7 +71,7 @@ namespace SearchWordNicklasMattias
         private void ExtractData(Tree btObj)
         {
             //Tree btObj = new Tree();
-            Node iniRoot = btObj.addNode("5");
+            //Node iniRoot = btObj.addNode("5");
             //få ut data från alla docs
             foreach (var document in DB.Docs)
             {
