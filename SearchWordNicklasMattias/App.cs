@@ -12,7 +12,7 @@ namespace SearchWordNicklasMattias
         {
             //Menu.MainMenu();
             var ws = new WordSearcher();
-            //ws.LoadFiles();
+            ws.LoadFiles();
             Console.Write("Word: ");
             ws.GetSearhWord(Console.ReadLine());
             Console.ReadLine();
