@@ -54,14 +54,14 @@ namespace SearchWordNicklasMattias
 
 
                 Tree btObj = new Tree();
-                Node iniRoot = btObj.addNode("5");
+                Node iniRoot = btObj.AddNode("5");
                 btObj.AddNode(btObj.Root, iniRoot);
                 ExtractData(btObj);
                 //btObj.AddNode(btObj.Root, btObj.addNode("6"));
                 //btObj.AddNode(btObj.Root, btObj.addNode("7"));
                 //btObj.AddNode(btObj.Root, btObj.addNode("8"));
                 //btObj.AddNode(btObj.Root, btObj.addNode("9"));
-                btObj.displayTree(btObj.Root);
+                btObj.DisplayTree(btObj.Root);
                 
                 Console.ReadLine();
             }
@@ -83,7 +83,7 @@ namespace SearchWordNicklasMattias
                 var wordCount = FindMatchInSentence(sentences);
 
                 var result = $"Search word : {word}\n{docTitle} got {wordCount} hits.\n{word} was found in these sentences: _______.";
-                btObj.AddNode(btObj.Root, btObj.addNode(result));
+                btObj.AddNode(btObj.Root, btObj.AddNode(result));
             }
         }
 

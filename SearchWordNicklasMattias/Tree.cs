@@ -38,7 +38,8 @@ namespace SearchWordNicklasMattias
                 }
             }
         }
-        public Node addNode(string data)
+
+        public Node AddNode(string data)
         {
             Node newNode = new Node(data);
 
@@ -49,15 +50,16 @@ namespace SearchWordNicklasMattias
             }
             return newNode;
         }
-        public void displayTree(Node root)
+
+        public void DisplayTree(Node nextNode)
         {
             Node temp;
-            temp = root;
+            temp = nextNode;
             if (temp == null)
                 return;
-            displayTree(temp.Left);
+            DisplayTree(temp.Left);
             Console.Write(temp.Data + " ");
-            displayTree(temp.Right);
+            DisplayTree(temp.Right);
         }
     }
 }
