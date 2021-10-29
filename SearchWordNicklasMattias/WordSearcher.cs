@@ -11,7 +11,7 @@ namespace SearchWordNicklasMattias
             set => word = value;
         }
         public List<string> SerchedWords = new List<string>();
-
+        public static Tree MainTree = new Tree();
         public int Counter;
         public int TotalCount;
 
@@ -21,11 +21,11 @@ namespace SearchWordNicklasMattias
             DB.GetStream();
         }
 
-        internal Tree GetSearhWord(string searchWord)
+        internal void GetSearhWord(string searchWord)
         {
             //Bearbeta ordert så att det är redo för nästa steg
             WordSearcher.Word = searchWord;
-            Tree tree = new Tree();
+            //Tree tree = new Tree();
             var resultExists = CheckForDuplicateWord();
 
             if (resultExists)
@@ -35,13 +35,11 @@ namespace SearchWordNicklasMattias
             }
             else
             {//Ordet är inte sökt på
-                tree = ExtractData(tree);
+                ExtractData(MainTree);
             }
-
-            return tree;
         }
 
-        private Tree ExtractData(Tree btObj)
+        private void ExtractData(Tree tree)
         {
             //få ut data från alla docs
             foreach (var document in DB.Docs)
@@ -69,11 +67,9 @@ namespace SearchWordNicklasMattias
                     $"{sentencesString}\n" +
                     $"______________________________"
                     ;
-
-                btObj.AddNode(btObj.Root, btObj.AddNode(result));
+                
+                tree.AddNode(tree.Root, tree.AddNode(result));
             }
-
-            return btObj;
         }
 
         private List<string> SearchDocRowsForMatch(string searchWord, List<string> doc)
@@ -97,7 +93,6 @@ namespace SearchWordNicklasMattias
             {
                 sentences.AddRange(row.Split('.', '!', '?'));
             }
-           
             return sentences;
         }
 
@@ -111,7 +106,6 @@ namespace SearchWordNicklasMattias
                     sentencesContainingWord.Add(sentence[i]);
                 }
             }
-
             var sentencesWithExactWord = new List<string>();
             for (int i = 0; i < sentencesContainingWord.Count; i++)
             {
@@ -124,7 +118,6 @@ namespace SearchWordNicklasMattias
                     }
                 }
             }
-
             return sentencesWithExactWord;
         }
 

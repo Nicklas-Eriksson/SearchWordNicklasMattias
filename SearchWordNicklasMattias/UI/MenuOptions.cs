@@ -83,7 +83,7 @@ namespace SearchWordNicklasMattias.UI
             switch (Helper.GetUserInput(1, 4))
             {
                 case 1:
-                    //PrintOutPriorSearches();
+                    new App().Print();
                     Helper.PressAnyKeyToContinue();
                     break;
                 case 2:
