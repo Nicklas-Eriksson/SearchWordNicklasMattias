@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SearchWordNicklasMattias
 {
-    //Alla meningar med hits
     public class Node
     {
         public string Data;

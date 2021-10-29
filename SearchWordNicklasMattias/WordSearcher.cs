@@ -46,6 +46,7 @@ namespace SearchWordNicklasMattias
                 //myNode.AddNode("4");
                 //myNode.AddNode("5");
 
+                
 
                 //myNode.PrintNode();
 
