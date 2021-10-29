@@ -10,14 +10,10 @@ namespace SearchWordNicklasMattias
     {
         public void Start()
         {
-            //Menu.MainMenu();
-            var ws = new WordSearcher();
-            ws.LoadFiles();
             Console.Write("Word: ");
-            var tree = ws.GetSearhWord(Console.ReadLine());
+            var tree = new WordSearcher().GetSearhWord(Console.ReadLine());
 
             tree.DisplayTree(tree.Root);
-            Console.ReadLine();
         }
     }
 }

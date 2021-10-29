@@ -37,16 +37,11 @@ namespace SearchWordNicklasMattias
             if (resultExists)
             {
                 //Ordet är redan sökt på, hämta den sparade datan å gå vidare med den.
+                //tree = GetData();
             }
             else
             {//Ordet är inte sökt på
-                 tree = ExtractData(tree);
-                //Node iniRoot = btObj.AddNode("5");
-                //btObj.AddNode(btObj.Root, iniRoot);
-               
-
-
-                //Console.ReadLine();
+                tree = ExtractData(tree);
             }
 
             return tree;

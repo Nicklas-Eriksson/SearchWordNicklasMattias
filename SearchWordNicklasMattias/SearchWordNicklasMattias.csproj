@@ -45,12 +45,13 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="DB.cs" />
-    <Compile Include="Menu.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tree.cs" />
+    <Compile Include="UI\PrintMenues.cs" />
     <Compile Include="Utility\Helper.cs" />
+    <Compile Include="UI\MenuOptions.cs" />
     <Compile Include="WordSearcher.cs" />
   </ItemGroup>
   <ItemGroup>
