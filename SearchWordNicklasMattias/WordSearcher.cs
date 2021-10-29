@@ -122,12 +122,13 @@ namespace SearchWordNicklasMattias
                 var word = sentencesContainingWord[i].Split(' ');
                 for (int j = 0; j < word.Length; j++)
                 {
-                    if (word[j].Equals(Word))
+                    if (word[j].ToLower().Equals(Word) || word[j].ToLower().Equals(Word + ','))
                     {
-                        sentencesWithExactWord.Add(sentencesContainingWord[i])
+                        sentencesWithExactWord.Add(sentencesContainingWord[i]);
                     }
                 }
             }
+
             return sentencesWithExactWord;
         }
 
