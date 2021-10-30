@@ -17,6 +17,9 @@ namespace SearchWordNicklasMattias
         public int TotalCount;
         public static string ResultString = "";
 
+        /// <summary>
+        /// Calls the DB to load up program with documents.
+        /// </summary>
         public void LoadFiles() => DB.GetStream();
 
         /// <summary>
@@ -41,6 +44,7 @@ namespace SearchWordNicklasMattias
 
         /// <summary>
         /// Extracts data from the documents when user searches for matches on a specific word.
+        /// Asymptotisk analys = O(n^2)
         /// </summary>
         /// <param name="tree">Active tree to be filled up with nodes containing results.</param>
         /// <returns>Result.</returns>
@@ -214,6 +218,7 @@ namespace SearchWordNicklasMattias
 
         /// <summary>
         /// Finds all the sentences that contains the search word.
+        /// Asymptotisk analys = O(n^2)
         /// </summary>
         /// <param name="sentence">List of sentences to be searched for match.</param>
         /// <returns>List of sentence containing the exact match of the word.</returns>
@@ -249,7 +254,8 @@ namespace SearchWordNicklasMattias
 
         /// <summary>
         /// Counts the number of equal mentions of current search word within a list of words within current document.
-        /// O()
+        /// Orto = O(1+n+(1)*n+1+1)
+        /// Asymptotisk analys = O(n^2)
         /// </summary>
         /// <param name="sentences">Sentences containing search word.</param>
         /// <returns>Number of words found.</returns>
