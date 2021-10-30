@@ -66,25 +66,6 @@ namespace SearchWordNicklasMattias.UI
             return Helper.GetUserInput(1, int.MaxValue);
         }
 
-        internal void PrintSpecificResult(List<string> searchResultCollection)
-        {
-            Console.WriteLine("Press [Q] to go back to previous menu");
-
-            var index = 1;
-            foreach (var r in searchResultCollection)
-            {
-                Console.WriteLine($"|| {index++}. {r}");
-            }
-            Console.WriteLine("\nChoose your result to inspect further");
-            Console.Write("Option: ");
-            var result = Helper.GetUserInput(1, searchResultCollection.Count);
-            //if (result == 0)
-            //    new MenuOptions().OptionForMainMenu();
-            //else
-            //    ChosenResultOptions(searchResultCollection[result - 1]);
-            Helper.PressAnyKeyToContinue();
-        }
-
         internal void PrintFullText()
         {
             Console.Clear();
