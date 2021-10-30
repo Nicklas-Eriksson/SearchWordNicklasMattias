@@ -11,7 +11,6 @@ namespace SearchWordNicklasMattias
         //public static Tree Main = new Tree();
         public void Start()
         {
-            Console.Write("Word: ");
             new WordSearcher().GetSearhWord(Console.ReadLine());
             Print();
             //Main.DisplayTree(Main.Root);

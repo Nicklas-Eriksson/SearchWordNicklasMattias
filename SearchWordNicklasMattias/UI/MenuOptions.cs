@@ -34,11 +34,14 @@ namespace SearchWordNicklasMattias.UI
             switch (option)
             {
                 case 1:
+                    Console.Clear();
+                    Logo.WordSearch();
+                    Console.Write("Word: ");
                     new App().Start();
                     Helper.PressAnyKeyToContinue();
                     break;
                 case 2:
-                    pm.SelectAText();
+                    pm.PrintFullText();
                     OptionForPrintFullTxtMenu();
                     break;
                 case 3:

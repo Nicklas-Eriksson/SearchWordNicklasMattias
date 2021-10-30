@@ -12,6 +12,8 @@ namespace SearchWordNicklasMattias.UI
         /// </summary>
         public void PrintMainMenu()
         {
+            Console.Clear();
+            Logo.MainMenu();
             Console.WriteLine("==================================");
             Console.WriteLine("|| 1. Search for a new word.... ||");
             Console.WriteLine("|| 2. Print out a text......... ||");
@@ -28,6 +30,7 @@ namespace SearchWordNicklasMattias.UI
         public void PrintPreviousResults()
         {
             Console.Clear();
+            Logo.History();
             Console.WriteLine("=====================================================");
             Console.WriteLine("|| 1. Print out all results from previous search. ||");
             Console.WriteLine("|| 2. Print out a specific search result......... ||");
@@ -48,6 +51,7 @@ namespace SearchWordNicklasMattias.UI
         public void PrintDocInOrder()
         {
             Console.Clear();
+            Logo.SortIt();
             Console.WriteLine("==================================");
             Console.WriteLine("|| Choose wich document to print ||");
             Console.WriteLine("||===============================||");
@@ -82,10 +86,10 @@ namespace SearchWordNicklasMattias.UI
             Helper.PressAnyKeyToContinue();
         }
 
-        public void SelectAText()
+        public void PrintFullText()
         {
             Console.Clear();
-            DB.GetStream();
+            Logo.FullTexts();
             Console.WriteLine("=====================================");
             Console.WriteLine("|| What txt you want to print out? ||");
             Console.WriteLine("||=================================||");
