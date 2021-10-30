@@ -1,6 +1,5 @@
 ﻿using SearchWordNicklasMattias.Utility;
 using System;
-using System.Collections.Generic;
 
 namespace SearchWordNicklasMattias.UI
 {

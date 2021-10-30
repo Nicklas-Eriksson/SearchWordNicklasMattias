@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 
 namespace SearchWordNicklasMattias.Utility
 {
@@ -19,7 +18,6 @@ namespace SearchWordNicklasMattias.Utility
             if (e == "")
             {
                 Console.WriteLine("Error! Wrong input.");
-                Thread.Sleep(1200);
             }
 
             Console.WriteLine(e);
@@ -37,9 +35,8 @@ namespace SearchWordNicklasMattias.Utility
             var input = Console.ReadLine().Trim().ToLower();
             if (!Int32.TryParse(input, out int number) || number < minInput || number > maxOutput)
             {
-                //if (input.StartsWith("q")) new DisplayToUser().MainMenu(); //user wants to go back
-                //Error("");
-                //number = GetUserInput(minInput, maxOutput);
+                Error("");
+                number = GetUserInput(minInput, maxOutput);
             }
 
             return number;

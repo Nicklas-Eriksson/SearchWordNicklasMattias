@@ -66,7 +66,7 @@ namespace SearchWordNicklasMattias.UI
             Console.WriteLine("\nHow many words would you like to sort?");
             return Helper.GetUserInput(1, int.MaxValue);
         }
-                
+
         public void PrintSpecificResult(List<string> searchResultCollection)
         {
             Console.WriteLine("Press [Q] to go back to previous menu");
