@@ -10,16 +10,14 @@ namespace SearchWordNicklasMattias.UI
         /// </summary>
         internal void MainMenu()
         {
-            var ws = new WordSearcher();
-            ws.LoadFiles();
-            bool loop = true;
+            new WordSearcher().LoadFiles();
+
             do
             {
                 Console.Clear();
                 new PrintMenues().PrintMainMenu();
-                var input = Helper.GetUserInput(1, 5);
-                OptionForMainMenu(input);
-            } while (loop);
+                OptionForMainMenu(Helper.GetUserInput(1, 5));
+            } while (true);
         }
 
         /// <summary>
@@ -85,10 +83,9 @@ namespace SearchWordNicklasMattias.UI
         /// <param name="option">User input.</param>
         private void PrintChosenTxt(int option)
         {
-            var docs = DB.Docs[option-1];
             Console.WriteLine();
 
-            foreach (var row in docs.Item2)
+            foreach (var row in DB.Docs[option - 1].Item2)
             {
                 Console.WriteLine(row);
             }
