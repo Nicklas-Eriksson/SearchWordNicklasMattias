@@ -16,7 +16,6 @@ namespace SearchWordNicklasMattias
         public int Counter;
         public int TotalCount;
 
-        //Workflow 
         public void LoadFiles()
         {
             DB.GetStream();

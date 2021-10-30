@@ -38,6 +38,7 @@ namespace SearchWordNicklasMattias.UI
 
         public void PrintList(List<string> l)
         {
+            Console.WriteLine();
             foreach (var row in l)
             {
                 Console.WriteLine(row);
