@@ -20,7 +20,11 @@ namespace SearchWordNicklasMattias
 
 
         public void LoadFiles() => DB.GetStream();
-
+        
+        /// <summary>
+        /// Directs program depending if the word has been searched for previously or should be a new search.
+        /// </summary>
+        /// <param name="searchWord"></param>
         public void GetSearhWord(string searchWord)
         {
             //Bearbeta ordert så att det är redo för nästa steg
@@ -36,6 +40,10 @@ namespace SearchWordNicklasMattias
             }
         }
 
+        /// <summary>
+        /// Handle method for calling methods to add data to tree structure.
+        /// </summary>
+        /// <param name="tree"></param>
         private void ExtractData(Tree tree)
         {
             var dict = new Dictionary<string, int>();
@@ -74,6 +82,11 @@ namespace SearchWordNicklasMattias
             tree.AddNode(tree.Root, tree.AddNode(resultString));
         }
 
+        /// <summary>
+        /// Sorts the search results from most occurred to least.
+        /// </summary>
+        /// <param name="dict"></param>
+        /// <returns>string</returns>
         public string SortResultsForInsertion(Dictionary<string, int> dict)
         {
             string resultString = null;
@@ -87,6 +100,12 @@ namespace SearchWordNicklasMattias
             return resultString;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="numberOfWords"></param>
+        /// <returns></returns>
         public List<string> GetDocInOrder(int index, int numberOfWords)
         {
             var doc = DB.Docs[index - 1].Item2;
@@ -106,6 +125,11 @@ namespace SearchWordNicklasMattias
             return requistedList;
         }
 
+        /// <summary>
+        /// Separates signs to compile a list of all single words within list.
+        /// </summary>
+        /// <param name="sentences"></param>
+        /// <returns>List</returns>
         private List<string> SplitSentencesIntoWords(List<string> sentences)
         {
             var words = new List<string>();
@@ -147,6 +171,12 @@ namespace SearchWordNicklasMattias
             return words;
         }
 
+        /// <summary>
+        /// Adds rows with a Contains match to list.
+        /// </summary>
+        /// <param name="searchWord"></param>
+        /// <param name="doc"></param>
+        /// <returns>List</returns>
         private List<string> SearchDocRowsForMatch(string searchWord, List<string> doc)
         {
             var rows = new List<string>();
@@ -162,6 +192,11 @@ namespace SearchWordNicklasMattias
             return rows;
         }
 
+        /// <summary>
+        /// Iterates over list to separate complete rows to a list of sentences.
+        /// </summary>
+        /// <param name="rows"></param>
+        /// <returns>List</returns>
         private List<string> SplitRowsIntoSentences(List<string> rows)
         {
             var sentences = new List<string>();
@@ -174,6 +209,11 @@ namespace SearchWordNicklasMattias
             return sentences;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sentence"></param>
+        /// <returns>List</returns>
         private List<string> FindMatchInSentence(List<string> sentence)
         {
             var sentencesContainingWord = new List<string>();
@@ -204,6 +244,12 @@ namespace SearchWordNicklasMattias
             return sentencesWithExactWord;
         }
 
+        /// <summary>
+        /// Counts the number of equal mentions of current search word within a list of words within current document.
+        /// O()
+        /// </summary>
+        /// <param name="sentences"></param>
+        /// <returns>int</returns>
         private int CountWordInSentences(List<string> sentences)
         {
             int counter = 0;
@@ -221,7 +267,10 @@ namespace SearchWordNicklasMattias
             return counter;
         }
 
-        //Anropa en lista med tidigare sökta ord, om den finns med i listan return true, annars false
+        /// <summary>
+        /// Calls a list containing previously added search words to compare with new search if it is found true else false.
+        /// </summary>
+        /// <returns>bool</returns>
         public bool CheckForDuplicateWord() => new WordSearcher().SerchedWords.Contains(WordSearcher.Word);
     }
 }
