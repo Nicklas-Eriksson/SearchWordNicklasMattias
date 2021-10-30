@@ -31,12 +31,11 @@ namespace SearchWordNicklasMattias.UI
         {
             Console.Clear();
             Logo.History();
-            Console.WriteLine("=====================================================");
-            Console.WriteLine("|| 1. Print out all results from previous search. ||");
-            Console.WriteLine("|| 2. Print out a specific search result......... ||");
-            Console.WriteLine("|| 3. Back to main menu.......................... ||");
-            Console.WriteLine("|| 4. Exit application........................... ||");
-            Console.WriteLine("=====================================================");
+            Console.WriteLine("====================================");
+            Console.WriteLine("|| 1. Print out previous results. ||");
+            Console.WriteLine("|| 2. Back to main menu.......... ||");
+            Console.WriteLine("|| 3. Exit application........... ||");
+            Console.WriteLine("====================================");
         }
 
         internal void PrintList(List<string> l)
@@ -65,25 +64,6 @@ namespace SearchWordNicklasMattias.UI
         {
             Console.WriteLine("\nHow many words would you like to sort?");
             return Helper.GetUserInput(1, int.MaxValue);
-        }
-
-        internal void PrintSpecificResult(List<string> searchResultCollection)
-        {
-            Console.WriteLine("Press [Q] to go back to previous menu");
-
-            var index = 1;
-            foreach (var r in searchResultCollection)
-            {
-                Console.WriteLine($"|| {index++}. {r}");
-            }
-            Console.WriteLine("\nChoose your result to inspect further");
-            Console.Write("Option: ");
-            var result = Helper.GetUserInput(1, searchResultCollection.Count);
-            //if (result == 0)
-            //    new MenuOptions().OptionForMainMenu();
-            //else
-            //    ChosenResultOptions(searchResultCollection[result - 1]);
-            Helper.PressAnyKeyToContinue();
         }
 
         internal void PrintFullText()
