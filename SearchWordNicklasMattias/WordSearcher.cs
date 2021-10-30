@@ -15,7 +15,9 @@ namespace SearchWordNicklasMattias
         public static Tree MainTree = new Tree();
         public int Counter;
         public int TotalCount;
-            
+        public Dictionary<string, int> Dict = new Dictionary<string, int>();
+
+
         public void LoadFiles() => DB.GetStream();
 
         public void GetSearhWord(string searchWord)
@@ -24,8 +26,7 @@ namespace SearchWordNicklasMattias
 
             if (CheckForDuplicateWord())
             {
-                //Ordet är redan sökt på, hämta den sparade datan å gå vidare med den.
-                //tree = GetData();
+                //Dict
             }
             else
             {//Ordet är inte sökt på
