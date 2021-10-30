@@ -12,6 +12,10 @@ namespace SearchWordNicklasMattias
         /// 
         /// The quicksort is a divide and conquer algorithm, it makes us of a pivot element of which
         /// it uses to compare all the other elements against it too see if it is higher or lower than the pivot.
+        /// 
+        /// In our qick sort, after comparing the first element to the pivot the method calls itself using a recursive
+        /// call. Based on if the element was higher or lower than the pivot it gives the method, different values to
+        /// adjust the i and j indexes used for scanning the data.
         /// </summary>
         /// <param name="unsorted"></param>
         /// <param name="low"></param>
