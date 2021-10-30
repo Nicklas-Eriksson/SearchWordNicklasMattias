@@ -20,7 +20,6 @@ namespace SearchWordNicklasMattias
 
         public void GetSearhWord(string searchWord)
         {
-            //Bearbeta ordert så att det är redo för nästa steg
             WordSearcher.Word = searchWord;
 
             if (CheckForDuplicateWord())
