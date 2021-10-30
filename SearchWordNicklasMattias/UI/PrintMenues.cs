@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace SearchWordNicklasMattias.UI
 {
-    public class PrintMenues
+    internal class PrintMenues
     {
         /// <summary>
         /// Prints out the alternatives for the user.
         /// Options 4
         /// </summary>
-        public void PrintMainMenu()
+        internal void PrintMainMenu()
         {
             Console.Clear();
             Logo.MainMenu();
@@ -27,7 +27,7 @@ namespace SearchWordNicklasMattias.UI
         /// Prints out the previous results for the user.
         /// Options 4
         /// </summary>
-        public void PrintPreviousResults()
+        internal void PrintPreviousResults()
         {
             Console.Clear();
             Logo.History();
@@ -39,7 +39,7 @@ namespace SearchWordNicklasMattias.UI
             Console.WriteLine("=====================================================");
         }
 
-        public void PrintList(List<string> l)
+        internal void PrintList(List<string> l)
         {
             Console.WriteLine();
             foreach (var row in l)
@@ -48,7 +48,7 @@ namespace SearchWordNicklasMattias.UI
             }
         }
 
-        public void PrintDocInOrder()
+        internal void PrintDocInOrder()
         {
             Console.Clear();
             Logo.SortIt();
@@ -61,13 +61,13 @@ namespace SearchWordNicklasMattias.UI
             Console.WriteLine("==================================");
         }
 
-        public int HowManyWords()
+        internal int HowManyWords()
         {
             Console.WriteLine("\nHow many words would you like to sort?");
             return Helper.GetUserInput(1, int.MaxValue);
         }
 
-        public void PrintSpecificResult(List<string> searchResultCollection)
+        internal void PrintSpecificResult(List<string> searchResultCollection)
         {
             Console.WriteLine("Press [Q] to go back to previous menu");
 
@@ -86,7 +86,7 @@ namespace SearchWordNicklasMattias.UI
             Helper.PressAnyKeyToContinue();
         }
 
-        public void PrintFullText()
+        internal void PrintFullText()
         {
             Console.Clear();
             Logo.FullTexts();

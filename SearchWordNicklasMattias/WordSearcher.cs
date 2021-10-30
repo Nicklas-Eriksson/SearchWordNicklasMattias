@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace SearchWordNicklasMattias
@@ -22,7 +21,7 @@ namespace SearchWordNicklasMattias
             DB.GetStream();
         }
 
-        internal void GetSearhWord(string searchWord)
+        public void GetSearhWord(string searchWord)
         {
             //Bearbeta ordert så att det är redo för nästa steg
             WordSearcher.Word = searchWord;
@@ -42,7 +41,7 @@ namespace SearchWordNicklasMattias
         private void ExtractData(Tree tree)
         {
             var dict = new Dictionary<string, int>();
-            //få ut data från alla docs
+
             foreach (var document in DB.Docs)
             {
                 var word = WordSearcher.Word;
@@ -51,8 +50,8 @@ namespace SearchWordNicklasMattias
                 var sentencesFromRows = SplitRowsIntoSentences(rows);
                 var sentences = FindMatchInSentence(sentencesFromRows);
                 var wordCount = CountWordInSentences(sentences);
-
                 var sentencesString = "";
+
                 for (int i = 0; i < sentences.Count; i++)
                 {
                     if (sentences[i] != "")
@@ -60,6 +59,7 @@ namespace SearchWordNicklasMattias
                             $"|| Sentences {i + 1}:\n" +
                             $"|| \t{sentences[i].Trim()}\n";
                 }
+
                 var result =
                     $"______________________________\n" +
                     $"|| Word: {word}\n" +
@@ -70,29 +70,32 @@ namespace SearchWordNicklasMattias
                     ;
                 dict.Add(result, wordCount);
             }
+
             var resultString = SortResultsForInsertion(dict);
             tree.AddNode(tree.Root, tree.AddNode(resultString));
         }
-        
-        public string SortResultsForInsertion(Dictionary<string,int> dict)
+
+        public string SortResultsForInsertion(Dictionary<string, int> dict)
         {
             string resultString = null;
             var sortByValue = from entry in dict orderby entry.Value descending select entry;
+
             foreach (var item in sortByValue)
-	        {
+            {
                 resultString += item;
-	        }
+            }
+
             return resultString;
         }
+
         public List<string> GetDocInOrder(int index, int numberOfWords)
         {
             var doc = DB.Docs[index - 1].Item2;
             var sentences = SplitRowsIntoSentences(doc);
             var words = SplitSentencesIntoWords(sentences);
-
             var sorted = SortingAlgorithm.Quick(words, 0, 0);
-
             var requistedList = new List<string>();
+
             if (numberOfWords <= words.Count - 1)
             {
                 for (int i = 0; i < numberOfWords; i++)
@@ -107,17 +110,18 @@ namespace SearchWordNicklasMattias
         private List<string> SplitSentencesIntoWords(List<string> sentences)
         {
             var words = new List<string>();
+
             for (int i = 0; i < sentences.Count; i++)
             {
                 var temp = sentences[i].Split(' ');
-                temp = temp[temp.Length-1].Split('"');
-                temp = temp[temp.Length-1].Split(',');
-                temp = temp[temp.Length-1].Split('-');
-                temp = temp[temp.Length-1].Split('.');
-                temp = temp[temp.Length-1].Split('!');
-                temp = temp[temp.Length-1].Split('?');
-                temp = temp[temp.Length-1].Split('_');
-                temp = temp[temp.Length-1].Split('\'');
+                temp = temp[temp.Length - 1].Split('"');
+                temp = temp[temp.Length - 1].Split(',');
+                temp = temp[temp.Length - 1].Split('-');
+                temp = temp[temp.Length - 1].Split('.');
+                temp = temp[temp.Length - 1].Split('!');
+                temp = temp[temp.Length - 1].Split('?');
+                temp = temp[temp.Length - 1].Split('_');
+                temp = temp[temp.Length - 1].Split('\'');
 
                 foreach (var word in temp)
                 {
@@ -135,7 +139,7 @@ namespace SearchWordNicklasMattias
                         {
                             var c = word?.Trim().ToUpper()[0];
                             var rest = word?.Trim().Substring(1);
-                            words.Add(c+rest);
+                            words.Add(c + rest);
                         }
                     }
                 }
@@ -147,6 +151,7 @@ namespace SearchWordNicklasMattias
         private List<string> SearchDocRowsForMatch(string searchWord, List<string> doc)
         {
             var rows = new List<string>();
+
             foreach (var row in doc)
             {
                 if (row.ToLower().Contains(WordSearcher.Word))
@@ -161,16 +166,19 @@ namespace SearchWordNicklasMattias
         private List<string> SplitRowsIntoSentences(List<string> rows)
         {
             var sentences = new List<string>();
+
             foreach (var row in rows)
             {
                 sentences.AddRange(row.Split('.', '!', '?'));
             }
+
             return sentences;
         }
 
         private List<string> FindMatchInSentence(List<string> sentence)
         {
             var sentencesContainingWord = new List<string>();
+
             for (int i = 0; i < sentence.Count; i++)
             {
                 if (sentence[i].ToLower().Contains(Word))
@@ -180,9 +188,11 @@ namespace SearchWordNicklasMattias
             }
 
             var sentencesWithExactWord = new List<string>();
+
             for (int i = 0; i < sentencesContainingWord.Count; i++)
             {
                 var word = sentencesContainingWord[i].Split(' ');
+
                 for (int j = 0; j < word.Length; j++)
                 {
                     if (word[j].ToLower().Equals(Word) || word[j].ToLower().Equals(Word + ','))
@@ -194,15 +204,19 @@ namespace SearchWordNicklasMattias
 
             return sentencesWithExactWord;
         }
-        
+
         private int CountWordInSentences(List<string> sentences)
         {
             int counter = 0;
+
             for (int i = 0; i < sentences.Count; i++)
             {
                 var words = sentences[i].Split(' ');
+
                 for (int j = 0; j < words.Length; j++)
+                {
                     if (words[j].ToLower().Equals(WordSearcher.Word)) counter++;
+                }
             }
 
             return counter;

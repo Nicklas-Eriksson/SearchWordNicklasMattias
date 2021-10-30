@@ -3,12 +3,12 @@ using System;
 
 namespace SearchWordNicklasMattias.UI
 {
-    public class MenuOptions
+    internal class MenuOptions
     {
         /// <summary>
         /// Prompts user to choose a option.
         /// </summary>
-        public void MainMenu()
+        internal void MainMenu()
         {
             var ws = new WordSearcher();
             ws.LoadFiles();
@@ -26,7 +26,7 @@ namespace SearchWordNicklasMattias.UI
         /// Menu options for main menu.
         /// </summary>
         /// <param name="option"></param>
-        public void OptionForMainMenu(int option)
+        internal void OptionForMainMenu(int option)
         {
             var pm = new PrintMenues();
 
@@ -59,7 +59,7 @@ namespace SearchWordNicklasMattias.UI
             }
         }
 
-        public void OptionForPrintFullTxtMenu()
+        internal void OptionForPrintFullTxtMenu()
         {
             var option = Helper.GetUserInput(1, 4);
             switch (option)
@@ -88,7 +88,7 @@ namespace SearchWordNicklasMattias.UI
             }
         }
 
-        public void OptionForPrintPreviousResults()
+        internal void OptionForPrintPreviousResults()
         {
             switch (Helper.GetUserInput(1, 4))
             {

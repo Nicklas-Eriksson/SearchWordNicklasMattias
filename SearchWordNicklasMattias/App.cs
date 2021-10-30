@@ -2,15 +2,15 @@
 
 namespace SearchWordNicklasMattias
 {
-    public class App
+    internal class App
     {
-        public void Start()
+        internal void Start()
         {
             new WordSearcher().GetSearhWord(Console.ReadLine());
             Print();
         }
 
-        public void Print()
+        internal void Print()
         {
             WordSearcher.MainTree.DisplayTree(WordSearcher.MainTree.Root);
         }

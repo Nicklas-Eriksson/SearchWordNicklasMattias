@@ -1,11 +1,10 @@
-﻿using System;
-
-namespace SearchWordNicklasMattias
+﻿namespace SearchWordNicklasMattias
 {
     public class Node
     {
         public string Data;
         public Node Left, Right;
+        public Node Root;
 
         public Node(string data)
         {
@@ -14,9 +13,6 @@ namespace SearchWordNicklasMattias
             Right = null;
 
         }
-
-        public Node Root;
-
     }
 }
 

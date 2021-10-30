@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SearchWordNicklasMattias
 {
     public class Tree
     {
         public Node Root;
+
         public void AddNode(Node Root, Node newNode)
         {
             if (Root == null)
@@ -16,8 +13,10 @@ namespace SearchWordNicklasMattias
                 Root = newNode;
 
             }
+
             Node temp;
             temp = Root;
+
             if (string.Compare(newNode.Data, temp.Data) < 0)
             {
                 if (temp.Left == null)
@@ -51,8 +50,8 @@ namespace SearchWordNicklasMattias
             if (Root == null)
             {
                 Root = newNode;
-
             }
+
             return newNode;
         }
 
@@ -61,9 +60,12 @@ namespace SearchWordNicklasMattias
             Node temp;
             temp = nextNode;
             if (temp == null)
+            {
                 return;
+            }
+
             DisplayTree(temp.Left);
-            Console.Write(temp.Data + " ");
+            Console.Write($"{temp.Data} ");
             DisplayTree(temp.Right);
         }
     }

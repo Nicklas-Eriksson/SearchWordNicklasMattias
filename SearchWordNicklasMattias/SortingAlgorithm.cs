@@ -6,11 +6,11 @@ namespace SearchWordNicklasMattias
     {
         public static List<string> Quick(List<string> unsorted, int low, int high)
         {
-            if (unsorted == null || unsorted.Count == 0) return new List<string>() {"Whops, something went wrong!"};
+            if (unsorted == null || unsorted.Count == 0) return new List<string>() { "Whops, something went wrong!" };
             else if (high == 0) high = unsorted.Count - 1;
             int i = low;
             int j = high;
-            var pivot = unsorted[(i + j) / 2];  
+            var pivot = unsorted[(i + j) / 2];
 
             while (i <= j)
             {
@@ -38,6 +38,7 @@ namespace SearchWordNicklasMattias
             {
                 Quick(unsorted, low, j);
             }
+
             if (i < high)
             {
                 Quick(unsorted, i, high);

@@ -13,7 +13,7 @@ namespace SearchWordNicklasMattias
         public static List<string> List1500 = new List<string>();
         public static List<string> List3000 = new List<string>();
 
-        internal static void GetStream()
+        public static void GetStream()
         {
             if (Docs.Count <= 0) FillLists();
         }
