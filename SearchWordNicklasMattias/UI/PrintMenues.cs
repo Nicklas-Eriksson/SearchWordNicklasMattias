@@ -31,12 +31,11 @@ namespace SearchWordNicklasMattias.UI
         {
             Console.Clear();
             Logo.History();
-            Console.WriteLine("===================================");
+            Console.WriteLine("====================================");
             Console.WriteLine("|| 1. Print out previous results. ||");
             Console.WriteLine("|| 2. Back to main menu.......... ||");
             Console.WriteLine("|| 3. Exit application........... ||");
-            Console.WriteLine("===================================");
-
+            Console.WriteLine("====================================");
         }
 
         internal void PrintList(List<string> l)
