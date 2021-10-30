@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System;
 
 namespace SearchWordNicklasMattias
 {
@@ -12,41 +11,31 @@ namespace SearchWordNicklasMattias
             get => word.Trim().ToLower();
             set => word = value;
         }
-        public List<string> SerchedWords = new List<string>();
+        public static List<string> SearchedWords = new List<string>();
         public static Tree MainTree = new Tree();
         public int Counter;
         public int TotalCount;
-        public Dictionary<string, int> Dict = new Dictionary<string, int>();
-
+        public static string ResultString = "";
 
         public void LoadFiles() => DB.GetStream();
-        
-        /// <summary>
-        /// Directs program depending if the word has been searched for previously or should be a new search.
-        /// </summary>
-        /// <param name="searchWord"></param>
-        public void GetSearhWord(string searchWord)
+
+        public string GetSearhWord(string searchWord)
         {
-            //Bearbeta ordert så att det är redo för nästa steg
             WordSearcher.Word = searchWord;
 
             if (CheckForDuplicateWord())
             {
-                //Dict
+                return ResultString;
             }
             else
-            {//Ordet är inte sökt på
-                ExtractData(MainTree);
+            {
+                return ExtractData(MainTree);
             }
         }
 
-        /// <summary>
-        /// Handle method for calling methods to add data to tree structure.
-        /// </summary>
-        /// <param name="tree"></param>
-        private void ExtractData(Tree tree)
+        private string ExtractData(Tree tree)
         {
-            var dict = new Dictionary<string, int>();
+            var sortingDict = new Dictionary<string, (string, int)>();
 
             foreach (var document in DB.Docs)
             {
@@ -74,20 +63,17 @@ namespace SearchWordNicklasMattias
                     $"{sentencesString}\n" +
                     $"______________________________"
                     ;
-                dict.Add(result, wordCount);
+                sortingDict.Add(result, (word, wordCount));
             }
 
-            var resultString = SortResultsForInsertion(dict);
-            Console.WriteLine(resultString);
-            tree.AddNode(tree.Root, tree.AddNode(resultString));
+            SearchedWords.Add(Word);
+            ResultString = SortResultsForInsertion(sortingDict);
+            tree.AddNode(tree.Root, tree.AddNode(ResultString));
+
+            return ResultString;
         }
 
-        /// <summary>
-        /// Sorts the search results from most occurred to least.
-        /// </summary>
-        /// <param name="dict"></param>
-        /// <returns>string</returns>
-        public string SortResultsForInsertion(Dictionary<string, int> dict)
+        public string SortResultsForInsertion(Dictionary<string, (string, int)> dict)
         {
             string resultString = null;
             var sortByValue = from entry in dict orderby entry.Value descending select entry;
@@ -267,10 +253,7 @@ namespace SearchWordNicklasMattias
             return counter;
         }
 
-        /// <summary>
-        /// Calls a list containing previously added search words to compare with new search if it is found true else false.
-        /// </summary>
-        /// <returns>bool</returns>
-        public bool CheckForDuplicateWord() => new WordSearcher().SerchedWords.Contains(WordSearcher.Word);
+        //Anropa en lista med tidigare sökta ord, om den finns med i listan return true, annars false
+        public bool CheckForDuplicateWord() => SearchedWords.Contains(WordSearcher.Word);
     }
 }
