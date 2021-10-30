@@ -50,8 +50,20 @@ namespace SearchWordNicklasMattias
         /// <returns>Result.</returns>
         private string ExtractData(Tree tree)
         {
-            var sortingDict = new Dictionary<string, (string, int)>();
+            var dict = new Dictionary<string, (string, int)>();
 
+            GenerateResult(dict);
+            SaveResult(tree, dict);
+
+            return ResultString;
+        }
+
+        /// <summary>
+        /// Generate results from documents.
+        /// </summary>
+        /// <param name="sortingDict">Dictionary to be filled.</param>
+        private void GenerateResult(Dictionary<string, (string, int)> sortingDict)
+        {
             foreach (var document in DB.Docs)
             {
                 var word = WordSearcher.Word;
@@ -80,12 +92,18 @@ namespace SearchWordNicklasMattias
                     ;
                 sortingDict.Add(result, (word, wordCount));
             }
+        }
 
+        /// <summary>
+        /// Save results.
+        /// </summary>
+        /// <param name="tree">Tree to be filled up with data.</param>
+        /// <param name="dict">Dictionary to be filled with result.</param>
+        private void SaveResult(Tree tree, Dictionary<string, (string, int)> dict)
+        {
             SearchedWords.Add(Word);
-            ResultString = SortResultsForInsertion(sortingDict);
+            ResultString = SortResultsForInsertion(dict);
             tree.AddNode(tree.Root, tree.AddNode(ResultString));
-
-            return ResultString;
         }
 
         /// <summary>
