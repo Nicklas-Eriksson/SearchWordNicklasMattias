@@ -64,7 +64,8 @@ namespace SearchWordNicklasMattias
             }
 
             DisplayTree(temp.Left);
-            Console.Write($"{temp.Data} ");
+            //Console.Write($"{temp.Data} ");
+            Console.Write(temp.Data + " ");
             DisplayTree(temp.Right);
         }
     }

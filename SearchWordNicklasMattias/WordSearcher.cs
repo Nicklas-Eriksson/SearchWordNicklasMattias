@@ -61,7 +61,7 @@ namespace SearchWordNicklasMattias
                     $"|| Title:{docTitle}\n" +
                     $"|| Words Found: {wordCount}\n" +
                     $"{sentencesString}\n" +
-                    $"______________________________"
+                    $"______________________________\n"
                     ;
                 sortingDict.Add(result, (word, wordCount));
             }
@@ -80,7 +80,7 @@ namespace SearchWordNicklasMattias
 
             foreach (var item in sortByValue)
             {
-                resultString += item;
+                resultString += item.Key;
             }
 
             return resultString;
