@@ -38,6 +38,10 @@ namespace SearchWordNicklasMattias.UI
             Console.WriteLine("====================================");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="l"></param>
         internal void PrintList(List<string> l)
         {
             Console.WriteLine();
@@ -47,6 +51,9 @@ namespace SearchWordNicklasMattias.UI
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         internal void PrintDocInOrder()
         {
             Console.Clear();
@@ -60,12 +67,19 @@ namespace SearchWordNicklasMattias.UI
             Console.WriteLine("==================================");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         internal int HowManyWords()
         {
             Console.WriteLine("\nHow many words would you like to sort?");
             return Helper.GetUserInput(1, int.MaxValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         internal void PrintFullText()
         {
             Console.Clear();

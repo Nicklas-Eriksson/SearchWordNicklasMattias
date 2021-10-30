@@ -86,6 +86,12 @@ namespace SearchWordNicklasMattias
             return resultString;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="numberOfWords"></param>
+        /// <returns></returns>
         public List<string> GetDocInOrder(int index, int numberOfWords)
         {
             var doc = DB.Docs[index - 1].Item2;
@@ -105,6 +111,11 @@ namespace SearchWordNicklasMattias
             return requistedList;
         }
 
+        /// <summary>
+        /// Separates signs to compile a list of all single words within list.
+        /// </summary>
+        /// <param name="sentences"></param>
+        /// <returns>List</returns>
         private List<string> SplitSentencesIntoWords(List<string> sentences)
         {
             var words = new List<string>();
@@ -146,6 +157,12 @@ namespace SearchWordNicklasMattias
             return words;
         }
 
+        /// <summary>
+        /// Adds rows with a Contains match to list.
+        /// </summary>
+        /// <param name="searchWord"></param>
+        /// <param name="doc"></param>
+        /// <returns>List</returns>
         private List<string> SearchDocRowsForMatch(string searchWord, List<string> doc)
         {
             var rows = new List<string>();
@@ -161,6 +178,11 @@ namespace SearchWordNicklasMattias
             return rows;
         }
 
+        /// <summary>
+        /// Iterates over list to separate complete rows to a list of sentences.
+        /// </summary>
+        /// <param name="rows"></param>
+        /// <returns>List</returns>
         private List<string> SplitRowsIntoSentences(List<string> rows)
         {
             var sentences = new List<string>();
@@ -173,6 +195,11 @@ namespace SearchWordNicklasMattias
             return sentences;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sentence"></param>
+        /// <returns>List</returns>
         private List<string> FindMatchInSentence(List<string> sentence)
         {
             var sentencesContainingWord = new List<string>();
@@ -203,6 +230,12 @@ namespace SearchWordNicklasMattias
             return sentencesWithExactWord;
         }
 
+        /// <summary>
+        /// Counts the number of equal mentions of current search word within a list of words within current document.
+        /// O()
+        /// </summary>
+        /// <param name="sentences"></param>
+        /// <returns>int</returns>
         private int CountWordInSentences(List<string> sentences)
         {
             int counter = 0;

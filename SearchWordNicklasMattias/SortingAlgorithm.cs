@@ -4,6 +4,13 @@ namespace SearchWordNicklasMattias
 {
     public static class SortingAlgorithm
     {
+        /// <summary>
+        /// Quick sort algorithm compares string values and puts them in alphabetical order.
+        /// </summary>
+        /// <param name="unsorted"></param>
+        /// <param name="low"></param>
+        /// <param name="high"></param>
+        /// <returns></returns>
         public static List<string> Quick(List<string> unsorted, int low, int high)
         {
             if (unsorted == null || unsorted.Count == 0) return new List<string>() { "Whops, something went wrong!" };
