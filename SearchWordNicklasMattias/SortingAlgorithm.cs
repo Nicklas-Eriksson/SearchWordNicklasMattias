@@ -10,16 +10,16 @@ namespace SearchWordNicklasMattias
             else if (high == 0) high = unsorted.Count - 1;
             int i = low;
             int j = high;
-            var pivot = unsorted[low].ToLower();
+            var pivot = unsorted[(i + j) / 2];  
 
             while (i <= j)
             {
-                while (unsorted[i].CompareTo(pivot) <= 0 && i < high && j >= i)
+                while (unsorted[i].CompareTo(pivot) < 0)
                 {
                     i++;
                 }
 
-                while (unsorted[j].CompareTo(pivot) >= 0 && j > low && j >= i)
+                while (unsorted[j].CompareTo(pivot) > 0)
                 {
                     j--;
                 }
