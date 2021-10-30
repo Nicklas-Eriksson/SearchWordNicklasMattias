@@ -7,6 +7,11 @@ namespace SearchWordNicklasMattias
         /// <summary>
         /// Quick sort algorithm compares string values and puts them in alphabetical order.
         /// Recursion occures here.
+        /// Recursion lets us garantee that nothing unwanted happens with the data.
+        /// It lets us cut down on code and makes the code more easy to read.
+        /// 
+        /// The quicksort is a divide and conquer algorithm, it makes us of a pivot element of which
+        /// it uses to compare all the other elements against it too see if it is higher or lower than the pivot.
         /// </summary>
         /// <param name="unsorted"></param>
         /// <param name="low"></param>
