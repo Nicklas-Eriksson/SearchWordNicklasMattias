@@ -27,7 +27,6 @@ namespace SearchWordNicklasMattias
         {
             //Bearbeta ordert så att det är redo för nästa steg
             WordSearcher.Word = searchWord;
-            //Tree tree = new Tree();
             var resultExists = CheckForDuplicateWord();
 
             if (resultExists)
@@ -75,7 +74,7 @@ namespace SearchWordNicklasMattias
             var resultString = SortResultsForInsertion(dict);
             tree.AddNode(tree.Root, tree.AddNode(resultString));
         }
-
+        
         public string SortResultsForInsertion(Dictionary<string,int> dict)
         {
             string resultString = null;
@@ -196,7 +195,7 @@ namespace SearchWordNicklasMattias
 
             return sentencesWithExactWord;
         }
-
+        
         private int CountWordInSentences(List<string> sentences)
         {
             int counter = 0;
