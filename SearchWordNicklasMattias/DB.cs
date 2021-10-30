@@ -4,20 +4,30 @@ using System.Reflection;
 
 namespace SearchWordNicklasMattias
 {
+    /// <summary>
+    /// Class responsible for reading the documents and adding the content to a data structure.
+    /// Reading is done by the usage of a stream reader.
+    /// </summary>
     public static class DB
     {
         //List with all docs. Each doc contains document name and List with all the rows (from stream reader)
         public static List<(string, List<string>)> Docs = new List<(string, List<string>)>();
-
         public static List<string> List1000 = new List<string>();
         public static List<string> List1500 = new List<string>();
         public static List<string> List3000 = new List<string>();
 
+        /// <summary>
+        /// On first run, reads all the documents and saves them.
+        /// </summary>
         public static void GetStream()
         {
             if (Docs.Count <= 0) FillLists();
         }
 
+        /// <summary>
+        /// Creates each document with Title, content.
+        /// Reading of the document occures here.
+        /// </summary>
         private static void FillLists()
         {
             var folder = "ShortStories/";

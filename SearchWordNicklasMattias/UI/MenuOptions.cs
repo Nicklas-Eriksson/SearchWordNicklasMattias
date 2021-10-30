@@ -3,6 +3,9 @@ using System;
 
 namespace SearchWordNicklasMattias.UI
 {
+    /// <summary>
+    /// Manages the menu options.
+    /// </summary>
     internal class MenuOptions
     {
         /// <summary>
@@ -61,6 +64,9 @@ namespace SearchWordNicklasMattias.UI
             }
         }
 
+        /// <summary>
+        /// Method for wich txt the user wants to print out.
+        /// </summary>
         internal void OptionForPrintFullTxtMenu()
         {
             var option = Helper.GetUserInput(1, 4);
@@ -91,6 +97,9 @@ namespace SearchWordNicklasMattias.UI
             }
         }
 
+        /// <summary>
+        /// Manages the print out the previous results call.
+        /// </summary>
         internal void OptionForPrintPreviousResults()
         {
             switch (Helper.GetUserInput(1, 3))

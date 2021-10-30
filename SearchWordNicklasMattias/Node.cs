@@ -1,5 +1,8 @@
 ﻿namespace SearchWordNicklasMattias
 {
+    /// <summary>
+    /// Node class for search tree.
+    /// </summary>
     public class Node
     {
         public string Data;

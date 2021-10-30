@@ -4,11 +4,14 @@ using System.Collections.Generic;
 
 namespace SearchWordNicklasMattias.UI
 {
+    /// <summary>
+    /// Manages the print methods for the menus.
+    /// </summary>
     internal class PrintMenues
     {
         /// <summary>
         /// Prints out the alternatives for the user.
-        /// Options 4
+        /// Options 5.
         /// </summary>
         internal void PrintMainMenu()
         {
@@ -25,7 +28,7 @@ namespace SearchWordNicklasMattias.UI
 
         /// <summary>
         /// Prints out the previous results for the user.
-        /// Options 4
+        /// Options 3.
         /// </summary>
         internal void PrintPreviousResults()
         {
@@ -39,7 +42,7 @@ namespace SearchWordNicklasMattias.UI
         }
 
         /// <summary>
-        /// 
+        /// Print outs a list.
         /// </summary>
         /// <param name="l"></param>
         internal void PrintList(List<string> l)
@@ -52,7 +55,7 @@ namespace SearchWordNicklasMattias.UI
         }
 
         /// <summary>
-        /// 
+        /// Displays to user documents available for printing.
         /// </summary>
         internal void PrintDocInOrder()
         {
@@ -68,7 +71,7 @@ namespace SearchWordNicklasMattias.UI
         }
 
         /// <summary>
-        /// 
+        /// Prompts the user on how many words it would like to sort.
         /// </summary>
         /// <returns></returns>
         internal int HowManyWords()
@@ -78,7 +81,7 @@ namespace SearchWordNicklasMattias.UI
         }
 
         /// <summary>
-        /// 
+        /// Prompts the user on what txt doc they want to print out all of the text from.
         /// </summary>
         internal void PrintFullText()
         {
