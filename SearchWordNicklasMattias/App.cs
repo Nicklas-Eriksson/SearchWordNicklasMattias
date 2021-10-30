@@ -7,7 +7,6 @@ namespace SearchWordNicklasMattias
         internal void Start()
         {
             new WordSearcher().GetSearhWord(Console.ReadLine());
-            Print();
         }
 
         internal void Print()

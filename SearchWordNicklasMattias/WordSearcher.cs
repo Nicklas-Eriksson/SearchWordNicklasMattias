@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace SearchWordNicklasMattias
 {
@@ -22,6 +23,7 @@ namespace SearchWordNicklasMattias
 
         public void GetSearhWord(string searchWord)
         {
+            //Bearbeta ordert så att det är redo för nästa steg
             WordSearcher.Word = searchWord;
 
             if (CheckForDuplicateWord())
@@ -65,6 +67,7 @@ namespace SearchWordNicklasMattias
                     $"______________________________"
                     ;
                 dict.Add(result, wordCount);
+                Console.WriteLine(result);
             }
 
             var resultString = SortResultsForInsertion(dict);
