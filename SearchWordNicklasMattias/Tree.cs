@@ -11,7 +11,6 @@ namespace SearchWordNicklasMattias
             if (Root == null)
             {
                 Root = newNode;
-
             }
 
             Node temp;

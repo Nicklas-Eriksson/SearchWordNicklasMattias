@@ -11,7 +11,6 @@
             this.Data = data;
             Left = null;
             Right = null;
-
         }
     }
 }

@@ -15,19 +15,15 @@ namespace SearchWordNicklasMattias
         public static Tree MainTree = new Tree();
         public int Counter;
         public int TotalCount;
-
-        public void LoadFiles()
-        {
-            DB.GetStream();
-        }
+            
+        public void LoadFiles() => DB.GetStream();
 
         public void GetSearhWord(string searchWord)
         {
             //Bearbeta ordert så att det är redo för nästa steg
             WordSearcher.Word = searchWord;
-            var resultExists = CheckForDuplicateWord();
 
-            if (resultExists)
+            if (CheckForDuplicateWord())
             {
                 //Ordet är redan sökt på, hämta den sparade datan å gå vidare med den.
                 //tree = GetData();
