@@ -66,10 +66,10 @@ namespace SearchWordNicklasMattias
                     $"______________________________"
                     ;
                 dict.Add(result, wordCount);
-                Console.WriteLine(result);
             }
 
             var resultString = SortResultsForInsertion(dict);
+            Console.WriteLine(resultString);
             tree.AddNode(tree.Root, tree.AddNode(resultString));
         }
 
