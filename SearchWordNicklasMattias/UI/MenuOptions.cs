@@ -17,7 +17,7 @@ namespace SearchWordNicklasMattias.UI
             {
                 Console.Clear();
                 new PrintMenues().PrintMainMenu();
-                var input = Helper.GetUserInput(1, 4);
+                var input = Helper.GetUserInput(1, 5);
                 OptionForMainMenu(input);
             } while (loop);
         }
@@ -42,6 +42,7 @@ namespace SearchWordNicklasMattias.UI
                 case 2:
                     pm.PrintFullText();
                     OptionForPrintFullTxtMenu();
+                    Helper.PressAnyKeyToContinue();
                     break;
                 case 3:
                     pm.PrintPreviousResults();
@@ -54,6 +55,9 @@ namespace SearchWordNicklasMattias.UI
                     Helper.PressAnyKeyToContinue();
                     break;
                 case 5:
+                    Console.Clear();
+                    Logo.Exit();
+                    Console.ReadLine();
                     Helper.ExitProgram();
                     break;
             }
@@ -82,6 +86,8 @@ namespace SearchWordNicklasMattias.UI
         private void PrintChosenTxt(int option)
         {
             var docs = DB.Docs[option-1];
+            Console.WriteLine();
+
             foreach (var row in docs.Item2)
             {
                 Console.WriteLine(row);
