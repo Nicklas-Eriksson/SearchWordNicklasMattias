@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SearchWordNicklasMattias
 {
@@ -42,6 +43,7 @@ namespace SearchWordNicklasMattias
 
         private void ExtractData(Tree tree)
         {
+            var dict = new Dictionary<string, int>();
             //få ut data från alla docs
             foreach (var document in DB.Docs)
             {
@@ -68,11 +70,22 @@ namespace SearchWordNicklasMattias
                     $"{sentencesString}\n" +
                     $"______________________________"
                     ;
-
-                tree.AddNode(tree.Root, tree.AddNode(result));
+                dict.Add(result, wordCount);
             }
+            var resultString = SortResultsForInsertion(dict);
+            tree.AddNode(tree.Root, tree.AddNode(resultString));
         }
 
+        public string SortResultsForInsertion(Dictionary<string,int> dict)
+        {
+            string resultString = null;
+            var sortByValue = from entry in dict orderby entry.Value descending select entry;
+            foreach (var item in sortByValue)
+	        {
+                resultString += item;
+	        }
+            return resultString;
+        }
         public List<string> GetDocInOrder(int index, int numberOfWords)
         {
             var doc = DB.Docs[index - 1].Item2;
