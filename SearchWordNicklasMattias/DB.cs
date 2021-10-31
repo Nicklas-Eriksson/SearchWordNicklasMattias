@@ -36,7 +36,7 @@ namespace SearchWordNicklasMattias
             var File3000 = $@"{folder}3000Words.txt";
 
             var folderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6);
-            folderPath = folderPath.Remove(folderPath.Length - 5);
+            folderPath = folderPath.Remove(folderPath.Length - 10);
 
             var path1000 = Path.Combine(folderPath, File1000);
             var path1500 = Path.Combine(folderPath, File1500);
