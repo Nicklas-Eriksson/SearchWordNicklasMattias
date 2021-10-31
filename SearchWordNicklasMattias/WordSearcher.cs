@@ -169,12 +169,17 @@ namespace SearchWordNicklasMattias
         /// <param name="requistedList"></param>
         private static void SavesRequestedAmountsOfWords(int numberOfWords, List<string> words, List<string> sorted, List<string> requistedList)
         {
-            if (numberOfWords <= words.Count - 1)
+            if (numberOfWords <= words.Count)
             {
                 for (int i = 0; i < numberOfWords; i++)
                 {
                     requistedList.Add(sorted[i]);
                 }
+            }
+            else
+            {
+                Console.WriteLine("\nNumber requested exceeds the document lenght.");
+                Console.WriteLine($"Total unique words in document is: {words.Count}");
             }
         }
 
