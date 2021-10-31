@@ -178,8 +178,10 @@ namespace SearchWordNicklasMattias
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("\nNumber requested exceeds the document lenght.");
                 Console.WriteLine($"Total unique words in document is: {words.Count}");
+                Console.ResetColor();
             }
         }
 

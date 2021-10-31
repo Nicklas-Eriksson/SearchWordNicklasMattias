@@ -17,7 +17,9 @@ namespace SearchWordNicklasMattias.Utility
         {
             if (e == "")
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("Error! Wrong input.");
+                Console.ResetColor();
             }
 
             Console.WriteLine(e);
@@ -31,7 +33,9 @@ namespace SearchWordNicklasMattias.Utility
         /// </summary>
         internal static int GetUserInput(int minInput, int maxOutput)
         {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write("Option: ");
+            Console.ResetColor();
             var input = Console.ReadLine().Trim().ToLower();
             if (!Int32.TryParse(input, out int number) || number < minInput || number > maxOutput)
             {
@@ -44,7 +48,9 @@ namespace SearchWordNicklasMattias.Utility
 
         internal static void PressAnyKeyToContinue()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("\nPress any key to go back!");
+            Console.ResetColor();
             Console.ReadLine();
         }
 
