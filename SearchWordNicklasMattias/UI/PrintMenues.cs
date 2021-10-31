@@ -47,10 +47,11 @@ namespace SearchWordNicklasMattias.UI
         /// <param name="l"></param>
         internal void PrintList(List<string> l)
         {
+            int i = 0;
             Console.WriteLine();
             foreach (var row in l)
             {
-                Console.WriteLine(row);
+                Console.WriteLine($"{++i}. {row}");
             }
         }
 

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace SearchWordNicklasMattias
 {
@@ -150,6 +152,24 @@ namespace SearchWordNicklasMattias
 
             return requistedList;
         }
+        /// <summary>
+        /// Evaluates every character in string word for special characters
+        /// then returns string with them removed
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public string RemoveSpecialCharacters(string str)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in str)
+            {
+                if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '.' || c == '_')
+                {
+                    sb.Append(c);
+                }
+            }
+            return sb.ToString();
+        }
 
         /// <summary>
         /// Separates signs to compile a list of all single words within list.
@@ -163,32 +183,23 @@ namespace SearchWordNicklasMattias
             for (int i = 0; i < sentences.Count; i++)
             {
                 var temp = sentences[i].Split(' ');
-                temp = temp[temp.Length - 1].Split('"');
-                temp = temp[temp.Length - 1].Split(',');
-                temp = temp[temp.Length - 1].Split('-');
-                temp = temp[temp.Length - 1].Split('.');
-                temp = temp[temp.Length - 1].Split('!');
-                temp = temp[temp.Length - 1].Split('?');
-                temp = temp[temp.Length - 1].Split('_');
-                temp = temp[temp.Length - 1].Split('\'');
 
                 foreach (var word in temp)
                 {
-                    if (word == "" || word == " " || word == "-" || word == "\"")
+                    var res = RemoveSpecialCharacters(word);
+                    if (res != "" && res != " " && res != "-" && res != "\"")
                     {
-                        continue;
-                    }
-                    else
-                    {
-                        if (words.Contains(word.Trim().ToLower()) || words.Contains(word.Trim().ToUpper()))
+                        if (words.Contains(res.Trim().ToLower()) || words.Contains(res.Trim().ToUpper()))
                         {
                             continue;
                         }
                         else
                         {
-                            var c = word?.Trim().ToUpper()[0];
-                            var rest = word?.Trim().Substring(1);
-                            words.Add(c + rest);
+                            var c = res?.Trim().ToUpper()[0];
+                            var rest = res?.Trim().Substring(1);
+                            var w = c + rest;
+                            if (!words.Contains(w))
+                                words.Add(w);
                         }
                     }
                 }
