@@ -76,13 +76,7 @@ namespace SearchWordNicklasMattias
                 var wordCount = CountWordInSentences(sentences);
                 var sentencesString = "";
 
-                for (int i = 0; i < sentences.Count; i++)
-                {
-                    if (sentences[i] != "")
-                        sentencesString +=
-                            $"|| Sentences {i + 1}:\n" +
-                            $"|| \t{sentences[i].Trim()}\n";
-                }
+                sentencesString = ExtractSentences(sentences, sentencesString);
 
                 var result =
                     $"______________________________\n" +
@@ -94,6 +88,25 @@ namespace SearchWordNicklasMattias
                     ;
                 sortingDict.Add(result, (word, wordCount));
             }
+        }
+
+        /// <summary>
+        /// Extracts the sentences containing the word in the document.
+        /// </summary>
+        /// <param name="sentences"></param>
+        /// <param name="sentencesString"></param>
+        /// <returns></returns>
+        private static string ExtractSentences(List<string> sentences, string sentencesString)
+        {
+            for (int i = 0; i < sentences.Count; i++)
+            {
+                if (sentences[i] != "")
+                    sentencesString +=
+                        $"|| Sentences {i + 1}:\n" +
+                        $"|| \t{sentences[i].Trim()}\n";
+            }
+
+            return sentencesString;
         }
 
         /// <summary>
@@ -142,6 +155,20 @@ namespace SearchWordNicklasMattias
             var sorted = SortingAlgorithm.Quick(words, 0, 0);
             var requistedList = new List<string>();
 
+            SavesRequestedAmountsOfWords(numberOfWords, words, sorted, requistedList);
+
+            return requistedList;
+        }
+
+        /// <summary>
+        /// Saves the amount of words user requested to get sorted and displayed.
+        /// </summary>
+        /// <param name="numberOfWords"></param>
+        /// <param name="words"></param>
+        /// <param name="sorted"></param>
+        /// <param name="requistedList"></param>
+        private static void SavesRequestedAmountsOfWords(int numberOfWords, List<string> words, List<string> sorted, List<string> requistedList)
+        {
             if (numberOfWords <= words.Count - 1)
             {
                 for (int i = 0; i < numberOfWords; i++)
@@ -149,9 +176,8 @@ namespace SearchWordNicklasMattias
                     requistedList.Add(sorted[i]);
                 }
             }
-
-            return requistedList;
         }
+
         /// <summary>
         /// Evaluates every character in string word for special characters
         /// then returns string with them removed
@@ -179,33 +205,44 @@ namespace SearchWordNicklasMattias
         private List<string> SplitSentencesIntoWords(List<string> sentences)
         {
             var words = new List<string>();
+            var temp = new List<string>();
 
             for (int i = 0; i < sentences.Count; i++)
             {
-                var temp = sentences[i].Split(' ');
+                temp.AddRange(sentences[i].Split(' ').ToList());
+            }
 
-                foreach (var word in temp)
+            foreach (var word in temp)
+            {
+                var res = RemoveSpecialCharacters(word);
+                if (res != "" && res != " " && res != "-" && res != "\"")
                 {
-                    var res = RemoveSpecialCharacters(word);
-                    if (res != "" && res != " " && res != "-" && res != "\"")
+                    if (words.Contains(res.Trim().ToLower()) || words.Contains(res.Trim().ToUpper()))
                     {
-                        if (words.Contains(res.Trim().ToLower()) || words.Contains(res.Trim().ToUpper()))
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            var c = res?.Trim().ToUpper()[0];
-                            var rest = res?.Trim().Substring(1);
-                            var w = c + rest;
-                            if (!words.Contains(w))
-                                words.Add(w);
-                        }
+                        continue;
+                    }
+                    else
+                    {
+                        TurnWordsFirstCharacterIntoUppercase(words, res);
                     }
                 }
             }
 
             return words;
+        }
+
+        /// <summary>
+        /// Turns words first character into uppercase. For display purpuses.
+        /// </summary>
+        /// <param name="words"></param>
+        /// <param name="res"></param>
+        private static void TurnWordsFirstCharacterIntoUppercase(List<string> words, string res)
+        {
+            var c = res?.Trim().ToUpper()[0];
+            var rest = res?.Trim().Substring(1);
+            var w = c + rest;
+            if (!words.Contains(w))
+                words.Add(w);
         }
 
         /// <summary>
@@ -255,13 +292,7 @@ namespace SearchWordNicklasMattias
         {
             var sentencesContainingWord = new List<string>();
 
-            for (int i = 0; i < sentence.Count; i++)
-            {
-                if (sentence[i].ToLower().Contains(Word))
-                {
-                    sentencesContainingWord.Add(sentence[i]);
-                }
-            }
+            AddSentenceWithMatch(sentence, sentencesContainingWord);
 
             var sentencesWithExactWord = new List<string>();
 
@@ -279,6 +310,22 @@ namespace SearchWordNicklasMattias
             }
 
             return sentencesWithExactWord;
+        }
+
+        /// <summary>
+        /// If sentence contains search word. Add it.
+        /// </summary>
+        /// <param name="sentence">Sentence to be checked.</param>
+        /// <param name="sentencesContainingWord"></param>
+        private static void AddSentenceWithMatch(List<string> sentence, List<string> sentencesContainingWord)
+        {
+            for (int i = 0; i < sentence.Count; i++)
+            {
+                if (sentence[i].ToLower().Contains(Word))
+                {
+                    sentencesContainingWord.Add(sentence[i]);
+                }
+            }
         }
 
         /// <summary>
@@ -305,10 +352,10 @@ namespace SearchWordNicklasMattias
             return counter;
         }
 
-       /// <summary>
-       /// Checks the list of prior search words.
-       /// </summary>
-       /// <returns>True if word is in list.</returns>
+        /// <summary>
+        /// Checks the list of prior search words.
+        /// </summary>
+        /// <returns>True if word is in list.</returns>
         public bool CheckForDuplicateWord() => SearchedWords.Contains(WordSearcher.Word);
     }
 }
